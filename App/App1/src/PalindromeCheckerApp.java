@@ -1,30 +1,36 @@
-// Version 3.0
-// Palindrome Checker App - Use Case 3
-// Check palindrome by reversing the string using a loop
+import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Original string
-        String original = "level";
+        Scanner scanner = new Scanner(System.in);
+        Stack<Character> stack = new Stack<>();
 
-        // Variable to store reversed string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        String original = input;
         String reversed = "";
 
-        // Reverse the string using a for loop
-        for(int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Push characters into stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
         }
 
-        // Compare original and reversed strings
-        if(original.equals(reversed)) {
-            System.out.println("The string \"" + original + "\" is a Palindrome.");
-        }
-        else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+        // Pop characters from stack to create reversed string
+        while (!stack.isEmpty()) {
+            reversed = reversed + stack.pop();
         }
 
-        System.out.println("Program Finished.");
+        // Compare original and reversed string
+        if (original.equals(reversed)) {
+            System.out.println("The string is a Palindrome.");
+        } else {
+            System.out.println("The string is NOT a Palindrome.");
+        }
+
+        scanner.close();
     }
 }
